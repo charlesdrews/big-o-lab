@@ -6,6 +6,8 @@ func insertionSort( var a as array )
             if a[j] < a[j-1]
                 swap a[j] and a[j-1]
 end func
+// O(n^2) because the j-loop is nested inside the i-loop
+// the j-loop runs n times for each of the n iterations of the i-loop, hence n*n total iterations
 
 Merge Sort:
 
@@ -20,6 +22,10 @@ func mergeSort( var a as array )
 
      return merge( l1, l2 )
 end func
+// mergeSort is O(n*log(n)). The merge method is O(n) (my reasoning is provided below that method), and it is performed
+// a total of log(n) times. Since mergeSort breaks the input in half each time, it will take log(n) recursive calls until
+// the input is the base case of an array with just 1 element. So, log(n) recursive calls * n per call,
+// therefore O(n*log(n)) total.
 
 func merge( var a as array, var b as array )
      var c as array
@@ -39,6 +45,9 @@ func merge( var a as array, var b as array )
           remove b[0] from b
      return c
 end func
+// merge is O(n) because it loops through all elements in the input arrays but the work done inside each loop is O(1), 
+// and O(1) * O(n) = O(n). Also, here n is |a| + |b|.
+
 
 Selection Sort:
 
