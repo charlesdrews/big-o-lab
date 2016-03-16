@@ -75,7 +75,9 @@ for (j = 0; j < n-1; j++) {
         swap(a[j], a[iMin]);
     }
 }
-// selectionSort is O(n^2) because the i-loop is nested inside the j-loop. The i-loop is O(n) because it does O(1) work n times. The j-loop also runs n times, and does the O(n) work of the i-loop each time. Therefore, we have O(n * n) = O(n^2).
+// selectionSort is O(n^2) because the i-loop is nested inside the j-loop. The i-loop is O(n) because it does O(1) work n
+// times. The j-loop also runs n times, and does the O(n) work of the i-loop each time.
+// Therefore, we have O(n * n) = O(n^2).
 
 
 Quick Sort:
@@ -85,7 +87,15 @@ func quicksort(var a as array, var low as int, var high as int){
         pivotLocation = partition(A,low,high)
         quicksort(a,low, pivot_location)
         quicksort(a, pivotLocation + 1, high)
-
+// quicksort is O(n^2) in the worst case, but O(n * log(n)) in the average case. Each time quicksort runs, it calls
+// partition which is O(n) (my reasoning for that is below). So the question is how many times does quicksort
+// recursively call itself - how many times is it doing that O(n) work? In the average case, the subarrays on either
+// side of the partition value are roughly half the length of the originall array, meaning in each step the subarrays are
+// half the length of the previous step. It would therefore take log(n) steps to get to the base case of an array with
+// just 1 element. In the worst case, however, the partition value is actually the smallest or largest element in the array,
+// and the resulting subarrays are of length 1 and n-1. In this case, it would take n steps to get to the base case of all
+// length 1 arrays. So, in the average case we have log(n) steps and O(n) work per step for O(n * log(n)) overall. In the
+// worst case we have n steps and O(n) work per step for O(n^2) overall.
 
 func partition(var a as array, var low as int, var high as int){
     pivot = a[low]
@@ -99,3 +109,4 @@ func partition(var a as array, var low as int, var high as int){
     swap(a[low], a[leftwall])
 
     return (leftwall)
+// partition is O(n) because the work done inside the loop is O(1) and the loop runs n times, hence O(n) overall.
