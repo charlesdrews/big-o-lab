@@ -6,8 +6,9 @@ func insertionSort( var a as array )
             if a[j] < a[j-1]
                 swap a[j] and a[j-1]
 end func
-// O(n^2) because the j-loop is nested inside the i-loop
-// the j-loop runs n times for each of the n iterations of the i-loop, hence n*n total iterations
+// insertionSort is O(n^2) because the j-loop is nested inside the i-loop. The work done inside the j-loop is O(n),
+// and that runs n times, since the i-loop runs n times. Therefore we have O(n*n) = O(n^2).
+
 
 Merge Sort:
 
@@ -26,6 +27,7 @@ end func
 // a total of log(n) times. Since mergeSort breaks the input in half each time, it will take log(n) recursive calls until
 // the input is the base case of an array with just 1 element. So, log(n) recursive calls * n per call,
 // therefore O(n*log(n)) total.
+
 
 func merge( var a as array, var b as array )
      var c as array
@@ -73,6 +75,8 @@ for (j = 0; j < n-1; j++) {
         swap(a[j], a[iMin]);
     }
 }
+// selectionSort is O(n^2) because the i-loop is nested inside the j-loop. The i-loop is O(n) because it does O(1) work n times. The j-loop also runs n times, and does the O(n) work of the i-loop each time. Therefore, we have O(n * n) = O(n^2).
+
 
 Quick Sort:
 
